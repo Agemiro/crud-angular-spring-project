@@ -20,8 +20,8 @@ public class CrudSpringApplication {
 		return args -> {
 			courseRepository.deleteAll();
 			Course course = new Course();
-			course.setName("Angular");
-			course.setCategory("nova");
+			course.setName("nome teste");
+			course.setCategory("categorie teste");
 			courseRepository.save(course);
 		};
 	}
