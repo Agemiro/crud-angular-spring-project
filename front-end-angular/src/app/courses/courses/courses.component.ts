@@ -15,15 +15,13 @@ import { CoursesService } from './../services/courses.service';
 export class CoursesComponent implements OnInit {
   courses$: Observable<Course[]>;
   //courses: Course[] = [];
-  displayedColumns = ['name', 'category', 'actions'];
+  //displayedColumns = ['name', 'category', 'actions'];
 
   // coursesService: CoursesService;
 
   constructor(
     private coursesService: CoursesService,
-    public dialog: MatDialog,
-    private router: Router,
-    private route: ActivatedRoute
+    public dialog: MatDialog
   ) {
     //this.coursesService = new CoursesService();
     this.courses$ = this.coursesService.list().pipe(
@@ -44,6 +42,6 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {}
 
   onAdd() {
-    this.router.navigate(['new-course'], { relativeTo: this.route });
+    //this.router.navigate(['new-course'], { relativeTo: this.route });
   }
 }
