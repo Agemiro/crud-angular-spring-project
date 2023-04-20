@@ -26,7 +26,12 @@
       </button>
     </mat-header-cell>
     <mat-cell *matCellDef="let course" class="action-collumn">
-      <button mat-icon-button color="primary" aria-label="Edit button">
+      <button
+        (click)="onEdit(course)"
+        mat-icon-button
+        color="primary"
+        aria-label="Edit button"
+      >
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button color="warn" aria-label="Delete button">

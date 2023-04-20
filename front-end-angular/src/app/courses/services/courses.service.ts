@@ -22,4 +22,8 @@ export class CoursesService {
     console.log(course);
     return this.httpClient.post<Course>(this.API, course);
   }
+
+  loadById(id: string) {
+    return this.httpClient.get<Course>(`${this.API}/${id}`);
+  }
 }
