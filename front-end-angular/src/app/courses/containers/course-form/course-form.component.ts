@@ -28,7 +28,7 @@ export class CourseFormComponent {
   ) {}
 
   ngOnInit(): void {
-    const course: Course = this.route.snapshot.data['course'];
+    const course: Course = this.route.snapshot.data['courseResolver'];
     this.formData.setValue({
       id: course.id,
       name: course.name,

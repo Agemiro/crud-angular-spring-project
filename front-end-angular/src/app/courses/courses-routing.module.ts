@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'edit-course/:id',
     component: CourseFormComponent,
-    resolve: { course: CourseResolver },
+    resolve: { courseResolver: CourseResolver },
   },
 ];
 
