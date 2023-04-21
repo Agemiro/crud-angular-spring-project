@@ -18,12 +18,22 @@ export class CoursesService {
     );
   }
 
+  loadById(id: string) {
+    return this.httpClient.get<Course>(`${this.API}/${id}`);
+  }
+
   save(course: Partial<Course>) {
-    console.log(course);
+    if (course.id) {
+      return this.update(course);
+    }
+    return this.create(course);
+  }
+
+  private create(course: Partial<Course>) {
     return this.httpClient.post<Course>(this.API, course);
   }
 
-  loadById(id: string) {
-    return this.httpClient.get<Course>(`${this.API}/${id}`);
+  private update(course: Partial<Course>) {
+    return this.httpClient.put<Course>(`${this.API}/${course.id}`, course);
   }
 }
