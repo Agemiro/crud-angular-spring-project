@@ -1,5 +1,7 @@
 package com.agemiro.crudspring.model;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.Column;
@@ -16,6 +18,8 @@ import lombok.Data;
 @Data
 @Entity
 //@Table(name = "cursos")
+@SQLDelete(sql = "UPDATE COURSE SET status = 'Inactive' WHERE id = ?")
+@Where(clause = "status = 'Active'")
 public class Course {
     
     @Id
@@ -33,5 +37,11 @@ public class Course {
     @Pattern(regexp = "Back-end|Front-end")
     @Column(length = 10, nullable = false)
     private String category;
+
+    @NotNull
+    @Length(max = 10)
+    @Pattern(regexp = "Active|Inactive")
+    @Column(length = 10, nullable = false)
+    private String status = "Active";
 
 }
