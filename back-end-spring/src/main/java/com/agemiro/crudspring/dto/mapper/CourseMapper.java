@@ -3,6 +3,7 @@ package com.agemiro.crudspring.dto.mapper;
 import org.springframework.stereotype.Component;
 
 import com.agemiro.crudspring.dto.CourseDTO;
+import com.agemiro.crudspring.enums.Category;
 import com.agemiro.crudspring.model.Course;
 
 @Component
@@ -14,10 +15,10 @@ public class CourseMapper {
             return null;
         }
 
-        return new CourseDTO(course.getId(), course.getName(), course.getCategory());
+        return new CourseDTO(course.getId(), course.getName(), course.getCategory().getValue());
     }
 
-    public static Course toEntity(CourseDTO courseDTO){
+    public Course toEntity(CourseDTO courseDTO){
 
         if(courseDTO == null){
             return null;
@@ -28,9 +29,19 @@ public class CourseMapper {
             course.setId(courseDTO.id());
         }
         course.setName(courseDTO.name());
-        course.setCategory(courseDTO.category());
-        course.setStatus("Active");
+        course.setCategory(convertCategoryValue(courseDTO.category()));
         return course;
+    }
+
+    public Category convertCategoryValue(String value){
+        if(value == null){
+            return null;
+        }
+        return switch (value) {
+            case "Front-end" -> Category.FRONTEND;
+            case "Back-end" -> Category.BACKEND;
+            default -> throw new IllegalArgumentException("Invalid category: " + value);
+        };
     }
     
 }

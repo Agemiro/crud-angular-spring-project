@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.agemiro.crudspring.enums.Category;
 import com.agemiro.crudspring.model.Course;
 import com.agemiro.crudspring.respository.CourseRepository;
 
@@ -21,7 +22,7 @@ public class CrudSpringApplication {
 			courseRepository.deleteAll();
 			Course course = new Course();
 			course.setName("nome teste");
-			course.setCategory("Back-end");
+			course.setCategory(Category.FRONTEND);
 			courseRepository.save(course);
 		};
 	}

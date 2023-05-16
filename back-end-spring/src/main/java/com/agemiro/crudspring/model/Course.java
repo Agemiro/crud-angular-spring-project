@@ -4,7 +4,13 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.Length;
 
+import com.agemiro.crudspring.enums.Category;
+import com.agemiro.crudspring.enums.Status;
+import com.agemiro.crudspring.enums.converters.CategoryConverter;
+import com.agemiro.crudspring.enums.converters.StatusConverter;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,15 +39,13 @@ public class Course {
     private String name;
 
     @NotNull
-    @Length(max = 10)
-    @Pattern(regexp = "Back-end|Front-end")
     @Column(length = 10, nullable = false)
-    private String category;
+    @Convert(converter = CategoryConverter.class)
+    private Category category;
 
     @NotNull
-    @Length(max = 10)
-    @Pattern(regexp = "Active|Inactive")
     @Column(length = 10, nullable = false)
-    private String status = "Active";
+    @Convert(converter = StatusConverter.class)
+    private Status status = Status.ACTIVE;
 
 }
